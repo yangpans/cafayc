@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<head>
+    <include file="Public/head"/>
+    <script type="text/javascript">
+        window.onload=function(){
+            $(function(){
+                var verifyimg = $(".verifyimg").attr("src");
+                $(".reloadverify").click(function(){
+                    if( verifyimg.indexOf('?')>0){
+                        $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                    }else{
+                        $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                    }
+                });
+            });
+            var valid = checkInput('js_form_change_info',function(oTxt){
+                switch(oTxt.name){
+                    case 'repassword':
+                        var oPass = document.getElementById('pass1').value;
+                        if(oPass!=oTxt.value){
+                            return false;
+                        }
+                        break;
+                    case 'username':
+                        var res=false;
+                        $.ajax({
+                            type: "POST",
+                            url:"{:U('User/ajax_register')}",
+                            data:{username:oTxt.value},
+                            async:false,
+                            dataType:"json",
+                            success:function(data){
+                                if(data.status){
+                                    res=true;
+                                }else{
+                                    res=false;
+                                }
+                            },
+                        });
+                        return res;
+                        break;
+
+                }
+
+                return true;
+            });
+
+
+
+
+        }
+    </script>
+</head>
+<body>
+<div class="c_main_container">
+
+    <div class="c_reg_main clearfix">
+        <div class="c_reg_tab">
+            <div class="c_reg_tab_cont">
+                <h3>我要加入s</h3>
+                <h3>成为设计院小伙伴</h3>
+                <p>欢迎热爱设计，热爱艺术的小伙伴加入我们</p>
+            </div>
+            <div class="c_reg_tab_cont active">
+                <h3>我要加入</h3>
+                <h3>因为我是校友</h3>
+                <p>年本科生毕业展#教师谈#王敏结果我院68名学子获2013-2014学年衣恋奖学金</p>
+            </div>
+        </div>
+        <div class="c_reg_box">
+            <div class="c_reg_head clearfix">
+                <h3>申请 C D G A</h3>
+                <img src="__CAFAYC__/img/reg_ico.png" class="c_reg_info_ico_posi" />
+            </div>
+            <form class="c_reg_form" id="js_form_change_info" action="__SELF__" method="post">
+                <p class="">账号信息</p>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="text" data-type="email" name="username" placeholder="常用邮箱" />
+                    <div></div>
+                </div>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" id="pass1" name="password" type="password" data-type="pass" placeholder="设置用户密码" />
+                    <div></div>
+                </div>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" name="repassword" type="password" data-type="pass2" placeholder="重复密码" />
+                    <div></div>
+                </div>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="text" name="phone" data-type="mobile" placeholder="手机号码" />
+                    <div></div>
+                </div>
+
+                <if condition="$_GET['youke'] ==''">
+                <p class="c_reg_self_info">个人认证信息{$_GET['youke']}</p>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="text" data-type="empty" name="name" placeholder="真实姓名" />
+                    <div></div>
+                </div>
+                <div class="c_reg_input_check">
+                    <select  class="c_reg_input" data-type="empty" name="sex">
+                        <option value="2">性别</option>
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                    <div></div>
+                </div>
+
+                <div class="c_reg_input_check">
+                    <select  class="c_reg_input" data-type="empty" name="graduation_year">
+                        <option value="">毕业年份</option>
+                        <option value="2007">2007</option>
+                        <option value="2008">2008</option>
+                    </select>
+                    <div></div>
+                </div>
+
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="date" data-type="empty" placeholder="出生日期" name="birthdate"/>
+                    <div></div>
+                </div>
+
+                <div class="c_reg_input_check">
+                    <select  class="c_reg_input" data-type="empty" name="major">
+                        <option value="">专业系别</option>
+                        <option value="工业工程">工业工程</option>
+                        <option value="网络工程">网络工程</option>
+                    </select>
+                    <div></div>
+                </div>
+                <div class="c_reg_input_check">
+                    <select  class="c_reg_input" data-type="empty" name="education">
+                        <option value="">学历</option>
+                        <option value="专科">专科</option>
+                        <option value="专科">本科</option>
+                    </select>
+                    <div></div>
+                </div>
+                </if>
+
+                <div class="c_reg_input_check c_reg_checkcode clearfix">
+                    <input class="c_reg_input" type="text" data-type="verify" id="verify" name="verify" placeholder="验证码" />
+                    <div></div>
+              <span class="c_reg_code">
+                <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;height:52px">
+              </span>
+                    <div class="controls Validform_checktip text-warning" style="color:#c09853"></div>
+                </div>
+                <div class="c_reg_oper clearfix">
+                    <input class="c_reg_btn" type="submit" value="提交申请资料" />
+                    <i class="c_reg_oper_ico"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="yang" style="width: 100%;height: 100%;background: rgba(0,0,0,0.4);position: fixed;left: 0;top: 0;text-align: center;z-index: 99999;display:none">
+    <div style="width: 490px;height: 80px;background: #f1f1f1;border-radius: 8px;font-size: 16px;line-height: 80px;margin: 200px auto 0;">
+        注册成功;1秒后跳转
+    </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,156 @@
+<extend name="Base/common"/>
+
+<block name="body">
+    <script type="text/javascript">
+        window.onload=function(){
+            var valid = checkInput('js_form_change_info',function(oTxt){
+                switch(oTxt.name){
+                    case 'repassword':
+                        var oPass = document.getElementById('pass1').value;
+                        if(oPass!=oTxt.value){
+                            return false;
+                        }
+                        break;
+                }
+                return true;
+            });
+        }
+    </script>
+    <div class="c_main_container">
+        <div class="c_reg_main clearfix">
+            <div class="c_self_info_box">
+                <img src="__CAFAYC__/img/pic.jpg" />
+                <div>修改头像</div>
+                <ul>
+                    <li class="c_reg_name">强勇</li>
+                    <li class="c_reg_time_major">2007届 工业设计 本科</li>
+                </ul>
+                <ul>
+                    <li>北京大田作物文化传播有限公司</li>
+                    <li>头衔：总经理</li>
+                </ul>
+                <ul>
+                    <li>xibincafa@163.com</li>
+                    <li>13872312312</li>
+                </ul>
+                <ul>
+                    <li>居住地：</li>
+                    <li>北京</li>
+                </ul>
+                <ul>
+                    <li>个性化域名-</li>
+                    <li>qiangyong.cadc.org.cn</li>
+                </ul>
+                <ul>
+                    <li>生日</li>
+                    <li>1984-12-18</li>
+                </ul>
+                <ul>
+                    <li><a href="javascript:;">修改手机号</a></li>
+                    <li><a href="javascript:;">修改邮箱</a></li>
+                    <li><a href="javascript:;">修改密码</a></li>
+                </ul>
+                <ul>
+                    <li><a href="javascript:;">管理个人简历（PDF格式）</a></li>
+                    <li><a href="javascript:;">上传个人作品集（PDF格式）</a></li>
+                </ul>
+            </div>
+            <div class="c_reg_box">
+                <div class="c_reg_head clearfix">
+                    <h3>修改会员信息</h3>
+                    <img src="__CAFAYC__/img/reg_ico.png" class="c_reg_info_ico_posi" />
+                </div>
+
+                <form class="c_reg_form" id="js_form_change_info" action="__SELF__" method="post">
+                    <p class="c_reg_self_info">个人认证信息</p>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" type="text" data-type="empty" name="name" placeholder="真实姓名" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <select  class="c_reg_input" name="sex" data-type="empty">
+                            <option value="2">性别</option>
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <select  class="c_reg_input" name="graduation_year" data-type="empty">
+                            <option value="0">毕业年份</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                        </select>
+                        <div></div>
+                    </div>
+
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="birthdate" type="date" data-type="empty" placeholder="出生日期" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <select  class="c_reg_input" name="major" data-type="empty">
+                            <option value="">专业系别</option>
+                            <option value="工业工程">工业工程</option>
+                            <option value="网络工程">网络工程</option>
+                        </select>
+                        <div></div>
+                    </div>
+
+                    <div class="c_reg_input_check">
+                        <select  class="c_reg_input" name="education" data-type="empty">
+                            <option value="">学历</option>
+                            <option value="专科">专科</option>
+                            <option value="本科">本科</option>
+                        </select>
+                        <div></div>
+                    </div>
+
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" type="text" name="residence"  placeholder="现居地(如：北京市／朝阳区／花家地南街8号／11号楼／1103室)" />
+                        <div></div>
+                    </div>
+
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="work_unit" type="text"  placeholder="工作单位" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="position" type="text"  placeholder="职位" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="website" type="text"  placeholder="公司网站" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="wechat" type="text"  placeholder="微信号" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="qq" type="text"  placeholder="QQ号" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="weibo" type="text"  placeholder="微博号" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <input class="c_reg_input" name="blog_website" type="text"  placeholder="个人网站/博客/百科" />
+                        <div></div>
+                    </div>
+                    <div class="c_reg_input_check">
+                        <textarea class="c_reg_input"  name="self-introduction" id="" cols="20" rows="10" style="width:96%;height:80px">个人介绍500字内</textarea>
+                        <div></div>
+                    </div>
+                    <div class="c_reg_oper clearfix">
+                        <input type="submit" value="保存" />
+                        <i class="c_reg_oper_ico"></i>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="footer">
+</block>

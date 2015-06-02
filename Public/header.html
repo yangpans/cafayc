@@ -1,0 +1,72 @@
+<!-- 导航条
+================================================== -->
+<style>
+    .dropdown-menu li{
+        background:green;
+        line-height: 25px;
+    }
+</style>
+<div class="c_main_container">
+    <!-- 导航 -->
+    <div class="c_head">
+        <div class="c_head_user_info" style="position:relative;">
+            <if condition="is_login()">
+                <span class="c_head_user_name">{:get_username()}</span>
+                <a class="c_set_btn" href="#"></a>
+                <ul class="dropdown-menu"
+                    style="position:absolute; top:42px; right:0;width:70px;text-align: center;display:none">
+                    <li style="padding-top:5px">
+                        <a href="{:U('User/profile')}">修改密码</a>
+                        <div style="position: absolute;top: -6px;left: 42px;display: inline-block;border-right: 6px solid transparent;border-bottom: 6px solid green;border-left: 6px solid transparent;content: '';">
+                        </div>
+                    </li>
+                    <li><a href="{:U('User/personal_data')}">个人资料</a></li>
+                    <li ><a href="{:U('User/logout')}">退出</a></li>
+                </ul>
+                <else/>
+                <span class="c_head_user_name">游客你好 <a href="{:U('User/register?youke=1')}">注册</a></span>
+                <a class="c_set_btn" href="{:U('User/login')}"></a>
+            </if>
+        </div>
+        <div class="c_nav clearfix">
+            <div class="c_logo">
+                <img src="__CAFAYC__/img/c_logo.png" />
+            </div>
+            <ul class="c_navigation clearfix">
+                <think:nav name="nav">
+                    <eq name="nav.pid" value="0">
+                        <li>
+                            <a
+                                    href="{$nav.url|get_nav_url}"
+                                    class="<?php if($category['title'] == $nav['title'] || $nav['id'] == $index )echo 'active';?>"
+                                    target="<eq name='nav.target' value='1'>_blank<else/>_self</eq>"
+                                    >
+                                <?php if($category['title'] == $nav['title'] || $nav['id'] == $index )
+                                    echo '<i class="c_up_angle_ico c_up_angle_ico_posi"></i>';
+                                ?>
+                                {$nav.title}
+                            </a>
+                        </li>
+                    </eq>
+                </think:nav>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        $(function(){
+            $('.c_set_btn').click(function(){
+                $('.dropdown-menu').slideToggle(100);
+            });
+            $('.dropdown-menu,.c_set_btn').hover(function(){
+                $(this).addClass('hover');
+            },function(){
+                $(this).removeClass('hover');
+            });
+            $('body').click(function(){
+                if(!$('.dropdown-menu').add('.c_set_btn').is('.hover')){
+                    $('.dropdown-menu').slideUp(100);
+                }
+            });
+        });
+    </script>

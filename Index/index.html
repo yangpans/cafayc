@@ -1,0 +1,95 @@
+<extend name="Base/common"/><extend name="Base/common"/>
+
+<block name="body">
+    <div class="c_home_main">
+        <div class="clearfix">
+            <div class="c_home_news c_home_news_box">
+                <h3>
+                    <span>校友会</span>
+                    <i class="c_home_title_pic c_home_title_pic_posi"></i>
+                </h3>
+                <ul>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="c_home_news_date">06-23</span>
+                                <span class="c_home_news_cont">
+                                    2014年本科生毕业展#教师谈#王敏：用设计创造力证明“最好的时”
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="c_home_news_date">06-23</span>
+                                <span class="c_home_news_cont">
+                                    班级，你是我永远的家：班集体建设评议结果揭晓
+                                </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <span class="c_home_news_date">06-23</span>
+                                <span class="c_home_news_cont">
+                                    我院68名学子获2013-2014学年衣恋奖学金
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="c_home_login_reg c_home_login_reg_box">
+                <div class="clearfix">
+                    <h3>校友会成员<br />CDGA</h3>
+                    <div class="c_home_login_reg_pic"></div>
+                </div>
+                <ul class="c_home_btn clearfix">
+                    <if condition="!is_login()">
+                        <li>
+                            <a class="c_home_reg_btn" href="{:U('User/register')}">老校友注册</a>
+                        </li>
+                        <li>
+                            <a class="c_home_login_btn" href="{:U('User/login')}">登录</a>
+                        </li>
+                    </if>
+                </ul>
+            </div>
+        </div>
+        <ul class="c_home_pic_nav clearfix">
+            <li>
+                <img src="__CAFAYC__/img/home_menu.jpg" />
+                <h3>
+                    <a href="javascript:;">
+                        <i class="c_up_angle_ico c_up_angle_ico_posi"></i>
+                        校友目录（1995-2006）
+                    </a>
+                </h3>
+            </li>
+            <li>
+                <img src="__CAFAYC__/img/home_works.jpg" />
+                <h3>
+                    <a href="javascript:;">
+                        <i class="c_up_angle_ico c_up_angle_ico_posi"></i>
+                        校友作品
+                    </a>
+                </h3>
+            </li>
+            <li>
+                <img src="__CAFAYC__/img/home_active.jpg" />
+                <h3>
+                    <a href="javascript:;">
+                        <i class="c_up_angle_ico c_up_angle_ico_posi"></i>
+                        活动
+                    </a>
+                </h3>
+            </li>
+            <li class="c_home_aboutus_link">
+                <img src="__CAFAYC__/img/home_aboutus.jpg" />
+                <h3>
+                    <a href="javascript:;">
+                        <i class="c_up_angle_ico c_up_angle_ico_posi"></i>
+                        关于校友会
+                    </a>
+                </h3>
+            </li>
+        </ul>
+    </div>
+</block>
+

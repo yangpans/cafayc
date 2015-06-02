@@ -1,0 +1,15 @@
+
+<!-- 底部
+================================================== -->
+<block name="footer">
+    <div class="c_footer">
+        Copyright 1995-2014 CAFA 中央美术学院设计学院校友会版权所有  服务热线：010-66554488  京ICP备09024527号-1  技术支持：G_Lab STOYARD
+    </div>
+    <include file="Public/var"/>
+    <block name="script"></block> <!-- 用于加载js代码 -->
+    <!-- 页面footer钩子，一般用于加载插件JS文件和JS代码 -->
+    {:hook('pageFooter', 'widget')}
+    <div class="hidden"><!-- 用于加载统计代码等隐藏元素 -->
+        <block name="hidden"></block>
+    </div>
+</block>

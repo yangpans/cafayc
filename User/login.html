@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<head>
+    <include file="Public/head"/>
+</head>
+<body>
+<div class="c_main_container">
+    <div class="c_reg_main clearfix">
+        <div class="c_reg_tab">
+            <div class="c_reg_tab_cont">
+                <h3>我要加入</h3>
+                <h3>成为设计院小伙伴</h3>
+                <p>欢迎热爱设计，热爱艺术的小伙伴加入我们</p>
+            </div>
+            <div class="c_reg_tab_cont active">
+                <h3>我要加入</h3>
+                <h3>因为我是校友</h3>
+                <p>年本科生毕业展#教师谈#王敏结果我院68名学子获2013-2014学年衣恋奖学金</p>
+            </div>
+        </div>
+        <div class="c_reg_box">
+            <div class="c_reg_head clearfix">
+                <h3>会员登录 C D G A Login</h3>
+                <img src="__CAFAYC__/img/reg_ico.png" class="c_reg_info_ico_posi" />
+            </div>
+            <form class="c_reg_form" action="__SELF__" method="post">
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="text" placeholder="用户名 username" name="username"/>
+                </div>
+                <div class="c_reg_input_check">
+                    <input class="c_reg_input" type="password" placeholder="密码 password" name="password" />
+                </div>
+
+                <div class="c_reg_input_check c_reg_checkcode clearfix">
+                    <input class="c_reg_input" type="text" placeholder="验证码" name="verify"/>
+            <span class="c_reg_code">
+              <img class="verifyimg reloadverify" alt="点击切换" src="{:U('verify')}" style="cursor:pointer;height:52px">
+            </span>
+                    <div class="controls Validform_checktip text-warning" style="color:#c09853"></div>
+                </div>
+                <div class="c_login_choice">
+                    <label>
+                        <input type="checkbox" />下次自动登录
+                    </label>
+                    <a href="javascript:;">忘记密码</a>
+                </div>
+                <div class="c_reg_oper clearfix">
+                    <input class="c_reg_btn" type="submit" value="登录 Sing In" />
+                    <i class="c_reg_oper_ico"></i>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+</body>
+</html>
+
+<block name="script">
+    <script type="text/javascript">
+        $(document)
+                .ajaxStart(function(){
+                    $("button:submit").addClass("log-in").attr("disabled", true);
+                })
+                .ajaxStop(function(){
+                    $("button:submit").removeClass("log-in").attr("disabled", false);
+                });
+
+
+        $("form").submit(function(){
+            var self = $(this);
+            $.post(self.attr("action"), self.serialize(), success, "json");
+            return false;
+
+            function success(data){
+                if(data.status){
+                    window.location.href = data.url;
+                } else {
+                    self.find(".Validform_checktip").text(data.info);
+                    //刷新验证码
+                    $(".reloadverify").click();
+                }
+            }
+        });
+
+        $(function(){
+            var verifyimg = $(".verifyimg").attr("src");
+            $(".reloadverify").click(function(){
+                if( verifyimg.indexOf('?')>0){
+                    $(".verifyimg").attr("src", verifyimg+'&random='+Math.random());
+                }else{
+                    $(".verifyimg").attr("src", verifyimg.replace(/\?.*$/,'')+'?'+Math.random());
+                }
+            });
+        });
+    </script>
+</block>
